@@ -1,0 +1,40 @@
+
+EWC calculate the derivatives while applying samples, to get the variance for each weight.
+If fisher for a parameter is high, it means it has much higher valuable information. Otherwise it is redundant.
+
+* dropout (from quora)
+decreases correlation between nodes.
+Adding nodes increases correlation
+set a percentage, drop the smallest percentage part
+
+
+* NEAT
+Neuroevolution of Augmenting Topologies (NEAT) turns out to be an interesting answer to this: it starts with a minimal network topology and evolves over time when the addition of new nodes improve the overall fitness of the network. The evolution process also explores disabling links between nodes, akin to dropout.
+
+NEAT is used in the recently published MarI/O implementation that beats a level of Super Mario World: Page on youtube.com
+
+
+* TODO:
+method 1:
+step 1. find all neurons within some predifined range or dynamic range.
+step 2. silence these neurons for the second task
+step 3. choose some neurons again and repeat the first step.
+
+method 2:
+step 1. dynamicely choose specific neurons from netwrok after first as public subnetwork after first training. 
+step 2. set remain neurons as private subnetwork owned by the first task.
+step 3. create another small network with size similar to the subnetwork of the first task.
+step 4. train second task with public sub-network and second private sub-network.
+
+
+* How to capture the correlation between tasks
+There should be some sub-features or subtask of each task.
+Correlation is high when there is a big overlap of subtasks
+Description of a task should be taken as input, other than pre-defined structures in networks. Description should not be very high level natural language, but a set of features already been prepared by some pre-network.
+
+* How to deal with multiple tasks.
+get knowned overlaps of sub-features.
+for each sub-features, use public network part for learning
+for each task, create a link between public features and private features(including unknown public features)
+
+
